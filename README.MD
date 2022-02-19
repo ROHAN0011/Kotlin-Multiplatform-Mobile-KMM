@@ -34,7 +34,7 @@ share, from the core layer to UI layers.
 This sample demonstrates sharing not only the data and domain layers of the app but also the
 application state:
 
-<img src="/media/top-level-arch.jpeg"/>
+<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/144aa557d1d980523abff4e16807bdd23fca579d/top-level-arch.jpeg"/>
 
 ### Shared data and domain layers
 
