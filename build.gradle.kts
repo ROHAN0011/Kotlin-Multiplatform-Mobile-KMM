@@ -1,60 +1,79 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("kotlin-parcelize")
+    kotlin("multiplatform")
+    id("com.android.library")
+    kotlin("plugin.serialization")
+}
+
+kotlin {
+    android()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "RssReader"
+        }
+    }
+
+    sourceSets {
+        /*
+        Source sets structure
+        common
+         ├─ android
+         ├─ ios
+             ├─ iosX64
+             ├─ iosArm64
+             ├─ iosSimulatorArm64
+         */
+        val commonMain by getting {
+            dependencies {
+                //Network
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.logging)
+                //Coroutines
+                implementation(libs.kotlinx.coroutines.core)
+                //Logger
+                implementation(libs.napier)
+                //JSON
+                implementation(libs.kotlinx.serialization.json)
+                //Key-Value storage
+                implementation(libs.multiplatform.settings)
+                // DI
+                api(libs.koin.core)
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                //Network
+                implementation(libs.ktor.client.okhttp)
+            }
+        }
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                //Network
+                implementation(libs.ktor.client.ios)
+            }
+        }
+    }
 }
 
 android {
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 
     defaultConfig {
         minSdk = (findProperty("android.minSdk") as String).toInt()
         targetSdk = (findProperty("android.targetSdk") as String).toInt()
-
-        applicationId = "com.github.jetbrains.rssreader.androidApp"
-        versionCode = 1
-        versionName = "1.0"
-    }
-
-    signingConfigs {
-        create("release") {
-            storeFile = file("./key/key.jks")
-            com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir).apply {
-                storePassword = getProperty("storePwd")
-                keyAlias = getProperty("keyAlias")
-                keyPassword = getProperty("keyPwd")
-            }
-        }
-    }
-
-    buildTypes {
-        create("debugPG") {
-            isDebuggable = false
-            isMinifyEnabled = true
-            versionNameSuffix = " debugPG"
-            matchingFallbacks.add("debug")
-
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                file("proguard-rules.pro")
-            )
-        }
-        getByName("release") {
-            isMinifyEnabled = true
-            signingConfig = signingConfigs.getByName("release")
-
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                file("proguard-rules.pro")
-            )
-        }
-    }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.get()
     }
     compileOptions {
         // Flag to enable support for the new language APIs
@@ -63,28 +82,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     dependencies {
-        implementation(project(":shared"))
-        //desugar utils
         coreLibraryDesugaring(libs.desugar.jdk.libs)
-        //Compose
-        implementation(libs.androidx.compose.ui)
-        implementation(libs.androidx.compose.ui.tooling)
-        implementation(libs.androidx.compose.foundation)
-        implementation(libs.androidx.compose.material)
-        //Compose Utils
-        implementation(libs.coil.compose)
-        implementation(libs.activity.compose)
-        implementation(libs.accompanist.insets)
-        implementation(libs.accompanist.swiperefresh)
-        //Coroutines
-        implementation(libs.kotlinx.coroutines.core)
-        implementation(libs.kotlinx.coroutines.android)
-        //DI
-        implementation(libs.koin.core)
-        implementation(libs.koin.android)
-        //Navigation
-        implementation(libs.voyager.navigator)
-        //WorkManager
-        implementation(libs.work.runtime.ktx)
     }
 }
