@@ -10,7 +10,7 @@ It's been designed to demonstrate how KMM can be used in real production project
 
 ## Desktop and Web experiment
 
-Desktop and Web clients were implemented as experimental features and can be viewed [here](https://github.com/Kotlin/kmm-production-sample/tree/c6a0d9182802490d17729ae634fb59268f68a447).
+Desktop and Web clients were implemented as experimental features and can be viewed [here](https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/06d30cc8205ec3949f930722bc9cf96f9fb80374/desktop+web.png).
 
 <img src="/media/desktop+web.png"/>
 
