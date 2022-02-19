@@ -1,37 +1,90 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+plugins {
+    id("com.android.application")
+    kotlin("android")
+    id("kotlin-parcelize")
+}
 
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+android {
+    compileSdk = (findProperty("android.compileSdk") as String).toInt()
+
+    defaultConfig {
+        minSdk = (findProperty("android.minSdk") as String).toInt()
+        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+
+        applicationId = "com.github.jetbrains.rssreader.androidApp"
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("./key/key.jks")
+            com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir).apply {
+                storePassword = getProperty("storePwd")
+                keyAlias = getProperty("keyAlias")
+                keyPassword = getProperty("keyPwd")
+            }
+        }
+    }
+
+    buildTypes {
+        create("debugPG") {
+            isDebuggable = false
+            isMinifyEnabled = true
+            versionNameSuffix = " debugPG"
+            matchingFallbacks.add("debug")
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro")
+            )
+        }
+        getByName("release") {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro")
+            )
+        }
+    }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.get()
+    }
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     dependencies {
-        classpath(libs.bundles.plugins)
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    // ./gradlew dependencyUpdates
-    // Report: build/dependencyUpdates/report.txt
-    apply(plugin = "com.github.ben-manes.versions")
-}
-
-//https://github.com/ben-manes/gradle-versions-plugin#rejectversionsif-and-componentselection
-fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    val isStable = stableKeyword || regex.matches(version)
-    return isStable.not()
-}
-
-tasks.withType<DependencyUpdatesTask> {
-    rejectVersionIf {
-        isNonStable(candidate.version) && !isNonStable(currentVersion)
+        implementation(project(":shared"))
+        //desugar utils
+        coreLibraryDesugaring(libs.desugar.jdk.libs)
+        //Compose
+        implementation(libs.androidx.compose.ui)
+        implementation(libs.androidx.compose.ui.tooling)
+        implementation(libs.androidx.compose.foundation)
+        implementation(libs.androidx.compose.material)
+        //Compose Utils
+        implementation(libs.coil.compose)
+        implementation(libs.activity.compose)
+        implementation(libs.accompanist.insets)
+        implementation(libs.accompanist.swiperefresh)
+        //Coroutines
+        implementation(libs.kotlinx.coroutines.core)
+        implementation(libs.kotlinx.coroutines.android)
+        //DI
+        implementation(libs.koin.core)
+        implementation(libs.koin.android)
+        //Navigation
+        implementation(libs.voyager.navigator)
+        //WorkManager
+        implementation(libs.work.runtime.ktx)
     }
 }
