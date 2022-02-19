@@ -56,7 +56,7 @@ information about state updates, the `Store` class also produces **effects** tha
 be used to display this information via alerts. This logic is organized in the shared KMM module of
 the `com.github.jetbrains.rssreader.app` package.
 
-<img src="/media/arch-details.jpg"/>
+<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/2706bb45d5a9c3e78f57cd191a6550257b4ac000/arch-details.jpg"/>
 
 ### Native UI
 
