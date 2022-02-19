@@ -2,12 +2,6 @@
 
 <img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/bf446a6049a1d9684817f2e2ef185c8f4b5a9036/ios+android.png"/>  
 
-This is an open-source, mobile, cross-platform application built
-with [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/). It's a simple RSS reader, and
-you can download it from the [App Store](https://apps.apple.com/ru/app/kmm-rss-reader/id1563922264)
-and [Google Play](https://play.google.com/store/apps/details?id=com.github.jetbrains.rssreader.androidApp).
-It's been designed to demonstrate how KMM can be used in real production projects.
-
 ## Desktop and Web experiment
 
 <img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/06d30cc8205ec3949f930722bc9cf96f9fb80374/desktop+web.png"/>
