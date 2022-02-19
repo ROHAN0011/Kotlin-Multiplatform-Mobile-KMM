@@ -1,6 +1,6 @@
 # KMM RSS Reader
 
-<img src="/media/ios+android.png"/>  
+<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/bf446a6049a1d9684817f2e2ef185c8f4b5a9036/ios+android.png"/>  
 
 This is an open-source, mobile, cross-platform application built
 with [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/). It's a simple RSS reader, and
