@@ -1,4 +1,4 @@
-# KMM RSS Reader
+# RSS Reader Production Sample
 
 <img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/bf446a6049a1d9684817f2e2ef185c8f4b5a9036/ios+android.png"/>  
 
