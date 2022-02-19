@@ -24,7 +24,7 @@ You can achieve the same structure by creating a project with
 the [KMM Plugin project wizard](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile)
 or cloning the [basic sample project](https://github.com/Kotlin/kmm-sample/).
 
-<img src="/media/basic-structure.png"/>
+<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/c046cd14de8300c05c4132f8b1a6497709e03b6f/basic-structure.png"/>
 
 ## Architecture
 
