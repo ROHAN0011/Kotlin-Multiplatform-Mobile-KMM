@@ -2,13 +2,15 @@
 
 <a href="https://youtu.be/6HNUqDL-pI8">Clik here for more information about RSS Reader</a>
 
-<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/bf446a6049a1d9684817f2e2ef185c8f4b5a9036/ios+android.png"/>  
+## Android and iOS Experiment
 
-## Desktop and Web experiment
+<img src="https://github.com/ROHAN0011/Kotlin-Multiplatform-Mobile-KMM/blob/c2d5b3f1703727c3405c8e2453f75f7e6c5571f4/ios+android.png"/>  
 
-<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/06d30cc8205ec3949f930722bc9cf96f9fb80374/desktop+web.png"/>
+## Desktop and Web Experiment
 
-## Project structure
+<img src="https://github.com/ROHAN0011/Kotlin-Multiplatform-Mobile-KMM/blob/c2d5b3f1703727c3405c8e2453f75f7e6c5571f4/desktop+web.png"/>
+
+## Project Structure
 
 This repository contains a common Kotlin Multiplatform module, a Android project
 and an iOS project. The common module is connected with the Android project via the
@@ -20,7 +22,7 @@ You can achieve the same structure by creating a project with
 the [KMM Plugin project wizard](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile)
 
 
-<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/c046cd14de8300c05c4132f8b1a6497709e03b6f/basic-structure.png"/>
+<img src="https://github.com/ROHAN0011/Kotlin-Multiplatform-Mobile-KMM/blob/c2d5b3f1703727c3405c8e2453f75f7e6c5571f4/basic-structure.png"/>
 
 ## Architecture
 
@@ -30,7 +32,7 @@ share, from the core layer to UI layers.
 This sample demonstrates sharing not only the data and domain layers of the app but also the
 application state:
 
-<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/144aa557d1d980523abff4e16807bdd23fca579d/top-level-arch.jpeg"/>
+<img src="https://github.com/ROHAN0011/Kotlin-Multiplatform-Mobile-KMM/blob/c2d5b3f1703727c3405c8e2453f75f7e6c5571f4/top-level-arch.jpeg"/>
 
 ### Shared data and domain layers
 
@@ -52,7 +54,7 @@ information about state updates, the `Store` class also produces **effects** tha
 be used to display this information via alerts. This logic is organized in the shared KMM module of
 the `com.github.jetbrains.rssreader.app` package.
 
-<img src="https://github.com/ROHAN0011/GDG-New-Delhi-KMM-Workshop/blob/2706bb45d5a9c3e78f57cd191a6550257b4ac000/arch-details.jpg"/>
+<img src="https://github.com/ROHAN0011/Kotlin-Multiplatform-Mobile-KMM/blob/c2d5b3f1703727c3405c8e2453f75f7e6c5571f4/arch-details.jpg"/>
 
 ### Native UI
 
