@@ -82,4 +82,4 @@ Android and `NSXMLParser` for iOS) are used. The common `FeedParser` interface
 is declared in the `commonMain` source set. Platform implementations are placed in the
 corresponding `iOSMain` and `AndroidMain` source sets. They are injected into the
 RSSReader class (the KMM module entry point) via the `create` factory method, which is declared in
-the [RSSReader class companion object](https://github.com/Kotlin/kmm-production-sample/blob/master/shared/src/androidMain/kotlin/com/github/jetbrains/rssreader/core/RssReader.kt).
+the [RSSReader class companion object](https://github.com/Kotlin/kmm-production-sample/blob/master/shared/src/androidMain/kotlin/com/github/jetbrains/rssreader/core/RssReader.kt). 
